@@ -30,7 +30,7 @@ client.on('message', async message => {
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
 
-    if(command == "daily") {
+    if(command == "اليوميه") {
         const cooldowndata = await cooldowns.get(`${message.author.id}-${message.guild.id}-daily`);
         if(parseInt(cooldowndata) > Date.now()) return message.reply(`Please wait ${ms(parseInt(cooldowndata) - Date.now(), {long: true})}`)
 
@@ -39,20 +39,20 @@ client.on('message', async message => {
         eco.set(`${message.author.id}-${message.guild.id}`, currentBalance + 5);
 
         message.channel.send(new Discord.MessageEmbed()
-            .setTitle("💵 Daily Reward!")
-            .setDescription(`You have claimed your daily reward! Your new balance is now ${currentBalance + 5}!`).setColor("00ff00")
+            .setTitle("💵 المكافه اليوميه!")
+            .setDescription(`مبروك انت كسبت ${currentBalance + 800}!`) دينار .setColor("00ff00")
         )
 
         cooldowns.set(`${message.author.id}-${message.guild.id}-daily`, Date.now() + ms("1d"))
     }
 
-    if(command == "bal") {
+    if(command == "الرصيد") {
         await eco.ensure(`${message.author.id}-${message.guild.id}`, 0);
         const currentBalance = await eco.get(`${message.author.id}-${message.guild.id}`);
 
         message.channel.send(new Discord.MessageEmbed()
-            .setTitle("💵 Your Balance!")
-            .setDescription(`Your current balance is \`${currentBalance}\``).setColor("00ff00")
+            .setTitle("رصيك هو 🎁! ")
+            .setDescription(`رصيدك هو \`${currentBalance}\``) دينار .setColor("00ff00")
         )
     }
 });
